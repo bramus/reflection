@@ -3,7 +3,7 @@
 namespace Tests\Bramus\Reflection\Examples;
 
 /**
- * Days of the week
+ * Days of the week.
  */
 class Weekday
 {

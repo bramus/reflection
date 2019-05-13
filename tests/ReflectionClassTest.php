@@ -3,7 +3,7 @@
 namespace Tests\Bramus\Reflection;
 
 use Bramus\Reflection\ReflectionClass;
-use Bramus\Reflection\Type\ReflectionConstant;
+use Bramus\Reflection\ReflectionClassConstant;
 use PHPUnit\Framework\TestCase;
 use Tests\Bramus\Reflection\Examples\Weekday;
 
@@ -26,9 +26,9 @@ class ReflectionClassTest extends TestCase
 		$reflected = new ReflectionClass(Weekday::class);
 		$constant = $reflected->getConstant('MONDAY');
 
-		$this->assertInstanceOf(ReflectionConstant::class, $constant);
-		$this->assertEquals($constant->getName(), 'MONDAY');
-		$this->assertEquals($constant->getValue(), 1);
-		$this->assertEquals($constant->getDescription(), 'Monday.');
+		$this->assertInstanceOf(ReflectionClassConstant::class, $constant);
+		$this->assertEquals('MONDAY', $constant->getName());
+		$this->assertEquals(1, $constant->getValue());
+		$this->assertEquals('Monday.', $constant->getSummary());
 	}
 }

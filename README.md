@@ -20,29 +20,19 @@ $ composer require bramus/reflection ~1.0
 
 ## Usage
 
+### A note
+
+All classes in `bramus/reflection` extend PHP's built-in versions. Therefore they have all of the functions like their parent class:
+
+- `\Bramus\Reflection\ReflectionClass` extends [PHP's built-in `ReflectionClass`](https://www.php.net/manual/en/class.reflectionclass.php).
+- `\Bramus\Reflection\ReflectionClassConstant` extends [PHP's built-in `ReflectionClassConstant`](https://www.php.net/manual/en/class.reflectionclassconstant.php).
+
 ### `ReflectionClass`
 
-The `ReflectionClass` in `bramus/reflection` is inherited from [the PHP `ReflectionClass` class](https://www.php.net/manual/en/class.reflectionclass.php).
+When compared to `\ReflectionClass`, `\Bramus\Reflection\ReflectionClass` works exactly the same, but will:
 
-```php
-<?php
-
-namespace Bramus\Reflection;
-
-class ReflectionClass extends \ReflectionClass
-{
-	// code here
-}
-```
-
-Therefore `\Bramus\ReflectionReflectionClass` has all of the functions like [its parent `ReflectionClass` class](https://www.php.net/manual/en/class.reflectionclass.php).
-
-#### Differences with PHP's `ReflectionClass`
-
-When compared to `\ReflectionClass`, `\Bramus\Reflection\ReflectionClass` will:
-
-- Return array of `ReflectionConstant` instances when calling [`getConstants()`](https://www.php.net/manual/en/reflectionclass.getconstants.php).
-- Return a `ReflectionConstant` instance when calling [`getConstant()`](https://www.php.net/manual/en/reflectionclass.getconstant.php).
+- Return an associate array containing `\Bramus\Reflection\ReflectionClassConstant` instances _(instead of simple values)_ when calling [`getConstants()`](https://www.php.net/manual/en/reflectionclass.getconstants.php).
+- Return a `\Bramus\Reflection\ReflectionClassConstant` instance _(instead of simple value)_ when calling [`getConstant()`](https://www.php.net/manual/en/reflectionclass.getconstant.php).
 
 Here's an example comparing `getConstant()`;
 
@@ -51,11 +41,15 @@ Here's an example comparing `getConstant()`;
 	```php
 	class Weekday
 	{
-		// Monday.
+		/**
+		 * Monday
+		 */
 		const MONDAY = 1;
 
-		// Tuesday.
-		…
+		/**
+		 * Tuesday
+		 */
+		const TUESDAY = …
 	}
 
 	$reflected = new \ReflectionClass(Weekday::class);
@@ -70,32 +64,42 @@ Here's an example comparing `getConstant()`;
 	```php
 	class Weekday
 	{
-		// Monday.
+		/**
+		 * Monday
+		 */
 		const MONDAY = 1;
 
-		// Tuesday.
-		…
+		/**
+		 * Tuesday
+		 */
+		const TUESDAY = …
 	}
 
 	$reflected = new \Bramus\Reflection\ReflectionClass(Weekday::class);
 	$constants = $reflected->getConstant('MONDAY');
 
 	var_dump($constant);
-	// object(Bramus\Reflection\Type\ReflectionConstant)#40 (3) {
-	//   ["name":"Bramus\Reflection\Type\ReflectionConstant":private]=>
+	// object(Bramus\Reflection\ReflectionClassConstant)#40 (2) {
+	//   ["name"]=>
 	//   string(6) "MONDAY"
-	//   ["value":"Bramus\Reflection\Type\ReflectionConstant":private]=>
-	//   int(1)
-	//   ["description":"Bramus\Reflection\Type\ReflectionConstant":private]=>
-	//   string(34) "Monday. The first day of the week."
+	//   ["class"]=>
+	//   string(7) "Weekday"
+	//   ["docComment":"Bramus\Reflection\ReflectionClassConstant":private]=>
+	//   object(phpDocumentor\Reflection\DocBlock)#86 (7) {
+	//     …
+	//   }
 	// }
 	```
 
-The provided `\Bramus\Reflection\Type\ReflectionConstant` class exposes three methods:
+### `ReflectionClassConstant`
 
-- `getName()`: gets the name of the constant.
-- `getValue()`: gets the value of the constant.
-- `getDescription()`: gets the description of the constant.
+When compared to `\ReflectionClassConstant`, `\Bramus\Reflection\ReflectionClassConstant` works exactly the same, but will:
+
+- Return a `\phpDocumentor\Reflection\DocBlock` instance _(instead of a string)_ when calling [`getDocComment()`](https://www.php.net/manual/en/reflectionclassconstant.getdoccomment.php)
+- Provide you with a `getDocCommentString()` method in case you want to access the contents as [`\ReflectionClassConstant::getDocComment()`](https://www.php.net/manual/en/reflectionclassconstant.getdoccomment.php) would return
+- Provide you with a `getSummary()` shorthand, directly on the `\Bramus\Reflection\ReflectionClassConstant` instance.
+- Provide you with a `getDescription()` shorthand, directly on the `\Bramus\Reflection\ReflectionClassConstant` instance.
+
 
 ### Other Reflection Classes
 

@@ -31,7 +31,7 @@ All classes in `bramus/reflection` extend PHP's built-in versions. Therefore the
 
 When compared to `\ReflectionClass`, `\Bramus\Reflection\ReflectionClass` works exactly the same, but will:
 
-- Return an associate array containing `\Bramus\Reflection\ReflectionClassConstant` instances _(instead of simple values)_ when calling [`getConstants()`](https://www.php.net/manual/en/reflectionclass.getconstants.php).
+- Return an associative array containing `\Bramus\Reflection\ReflectionClassConstant` instances _(instead of simple values)_ when calling [`getConstants()`](https://www.php.net/manual/en/reflectionclass.getconstants.php).
 - Return a `\Bramus\Reflection\ReflectionClassConstant` instance _(instead of simple value)_ when calling [`getConstant()`](https://www.php.net/manual/en/reflectionclass.getconstant.php).
 
 Here's an example comparing `getConstant()`;

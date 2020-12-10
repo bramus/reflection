@@ -1,6 +1,6 @@
 # `bramus/reflection`
 
-[![Build Status](https://img.shields.io/travis/bramus/reflection.svg?style=flat-square)](http://travis-ci.org/bramus/reflection) [![Source](http://img.shields.io/badge/source-bramus/reflection-blue.svg?style=flat-square)](https://github.com/bramus/reflection) [![Version](https://img.shields.io/packagist/v/bramus/reflection.svg?style=flat-square)](https://packagist.org/packages/bramus/reflection) [![Downloads](https://img.shields.io/packagist/dt/bramus/reflection.svg?style=flat-square)](https://packagist.org/packages/bramus/reflection/stats) [![License](https://img.shields.io/packagist/l/bramus/reflection.svg?style=flat-square)](https://github.com/bramus/reflection/blob/master/LICENSE)
+[![Build Status](https://github.com/bramus/reflection/workflows/CI/badge.svg)](https://github.com/bramus/reflection/actions) [![Source](http://img.shields.io/badge/source-bramus/reflection-blue.svg?style=flat-square)](https://github.com/bramus/reflection) [![Version](https://img.shields.io/packagist/v/bramus/reflection.svg?style=flat-square)](https://packagist.org/packages/bramus/reflection) [![Downloads](https://img.shields.io/packagist/dt/bramus/reflection.svg?style=flat-square)](https://packagist.org/packages/bramus/reflection/stats) [![License](https://img.shields.io/packagist/l/bramus/reflection.svg?style=flat-square)](https://github.com/bramus/reflection/blob/master/LICENSE)
 
 `bramus/reflection` is a library that tries to make [PHP's built-in Reflection](https://www.php.net/manual/en/book.reflection.php) better.
 

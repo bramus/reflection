@@ -15,22 +15,29 @@ class ReflectionClassConstant extends \ReflectionClassConstant
 		$this->docComment = $this->extractDocComment();
 	}
 
-	public function getSummary()
+	public function getSummary(): string
 	{
-		return $this->getDocComment()->getSummary() ?: '';
+		if (is_a($this->docComment, \phpDocumentor\Reflection\DocBlock::class)) {
+			return $this->docComment->getSummary();
+		}
+
+		return (string) $this->docComment;
 	}
 
-	public function getDescription()
+	public function getDescription(): string
 	{
-		return (string) $this->getDocComment()->getDescription();
+		if (is_a($this->docComment, \phpDocumentor\Reflection\DocBlock::class)) {
+			return $this->docComment->getDescription();
+		}
+
+		if (!$this->docComment) {
+			return '';
+		}
+
+		return (string) $this->docComment;
 	}
 
-	public function getDocComment()
-	{
-		return $this->docComment;
-	}
-
-	public function getDocCommentString()
+	public function getDocCommentString(): string
 	{
 		return parent::getDocComment() ?: '';
 	}

@@ -16,7 +16,7 @@ class ReflectionClass extends \ReflectionClass
 	 *
 	 * @return mixed
 	 */
-	public function getConstant($name)
+	public function getConstant(string $name): mixed
 	{
 		// Constants have not been stored yet, do it first
 		if (null === $this->constants) {
@@ -37,7 +37,7 @@ class ReflectionClass extends \ReflectionClass
 	 *
 	 * @return array An array of constants, where the keys hold the name and the values ReflectionConstant instances
 	 */
-	public function getConstants(): array
+	public function getConstants(?int $filter = null): array
 	{
 		// Constants have already been extracted, return that
 		if (null !== $this->constants) {
